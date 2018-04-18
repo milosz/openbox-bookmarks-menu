@@ -11,7 +11,7 @@ sqlite_params="-separator ^"
 bookmarks_database=`ls ~/.mozilla/firefox/*.default/places.sqlite`
 
 # root folder - "unfiled"
-root_folder="select br.folder_id from moz_bookmarks_roots as br where br.root_name='unfiled'"
+root_folder="(select id from moz_bookmarks where rtrim(guid,'_')='unfiled')"
 
 # SQL query 
 sql_query="select b.title, p.url from moz_bookmarks as b left outer join moz_places as p on b.fk=p.id where p.hidden=0 and b.type = 1 and b.title is not null and p.hidden=0 and b.parent=(${root_folder}) order by b.dateAdded limit 25"

@@ -17,7 +17,7 @@ sql_query="select p.title, p.url from moz_places as p where p.hidden=0 order by 
 browser_path=`which iceweasel`
 
 # root element
-root_element="(select folder_id from moz_bookmarks_roots where root_name='menu')"
+root_element="(select id from moz_bookmarks where rtrim(guid,'_')='menu')"
 
 # process bookmarks
 process_bookmarks(){
