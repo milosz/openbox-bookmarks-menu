@@ -2,13 +2,13 @@
 # Generate "Bookmarks from specified folders" OpenBox dynamic menu
 
 # path to the sqlite3 binary
-sqlite_path=`which sqlite3`
+sqlite_path="$(which sqlite3)"
 
 # sqlite3 parameters (define separator character)
 sqlite_params="-separator ^"
 
 # path to the places.sqlite database
-bookmarks_database=`ls ~/.mozilla/firefox/*.default/places.sqlite`
+bookmarks_database="$(find ~/.mozilla/firefox/*.default*/ -name "places.sqlite" -print -quit)"
 
 # folders
 folders="2,84,86"
@@ -17,7 +17,7 @@ folders="2,84,86"
 sql_query="select b.title, p.url from moz_bookmarks as b left outer join moz_places as p on b.fk=p.id where p.hidden=0 and b.type = 1 and b.title is not null and p.hidden=0 and b.parent in (${folders})"
 
 # browser path
-browser_path=`which iceweasel`
+browser_path="$(which firefox)"
 
 
 # header

@@ -2,19 +2,19 @@
 # Generate "Most popular websites" OpenBox dynamic menu
 
 # path to the sqlite3 binary
-sqlite_path=`which sqlite3`
+sqlite_path="$(which sqlite3)"
 
 # sqlite3 parameters (define separator character)
 sqlite_params="-separator ^"
 
 # path to the places.sqlite database
-bookmarks_database=`ls ~/.mozilla/firefox/*.default/places.sqlite`
+bookmarks_database="$(find ~/.mozilla/firefox/*.default*/ -name "places.sqlite" -print -quit)"
 
 # SQL query 
 sql_query="select p.title, p.url from moz_places as p where p.hidden=0 order by frecency desc limit 10"
 
 # browser path
-browser_path=`which iceweasel`
+browser_path="$(which firefox)"
 
 
 # header
